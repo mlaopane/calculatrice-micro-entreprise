@@ -32,7 +32,7 @@
           <NumberInput
             id="ca-brut"
             name="grossRevenue"
-            placeholder="72600"
+            placeholder="Ex. 72600"
             bind:value={grossRevenue}
           />
         </TableCell>
