@@ -21,6 +21,22 @@
     grossRevenue === 0 || grossRevenue === null
       ? 0
       : (100 * revenueTax) / grossRevenue;
+  $: secondTierPercentage =
+    grossRevenue === 0 || grossRevenue === null
+      ? '0.00'
+      : ((grossRevenueTax.secondTier * 100) / grossRevenue).toFixed(2);
+  $: thirdTierPercentage =
+    grossRevenue === 0 || grossRevenue === null
+      ? '0.00'
+      : ((grossRevenueTax.thirdTier * 100) / grossRevenue).toFixed(2);
+  $: fourthTierPercentage =
+    grossRevenue === 0 || grossRevenue === null
+      ? '0.00'
+      : ((grossRevenueTax.fourthTier * 100) / grossRevenue).toFixed(2);
+  $: fifthTierPercentage =
+    grossRevenue === 0 || grossRevenue === null
+      ? '0.00'
+      : ((grossRevenueTax.fifthTier * 100) / grossRevenue).toFixed(2);
 </script>
 
 <div>
@@ -68,10 +84,7 @@
       </TableRow>
       <TableRow>
         <TableCell>
-          Impôts sur le revenu - Tranche 11% ({(
-            (grossRevenueTax.secondTier * 100) /
-            grossRevenue
-          ).toFixed(2)}%)
+          Impôts sur le revenu - Tranche 11% ({secondTierPercentage}%)
         </TableCell>
         <TableCell>
           {grossRevenueTax.secondTier.toFixed(2)}€
@@ -79,10 +92,7 @@
       </TableRow>
       <TableRow>
         <TableCell>
-          Impôts sur le revenu - Tranche 30% ({(
-            (grossRevenueTax.thirdTier * 100) /
-            grossRevenue
-          ).toFixed(2)}%)
+          Impôts sur le revenu - Tranche 30% ({thirdTierPercentage}%)
         </TableCell>
         <TableCell>
           {grossRevenueTax.thirdTier.toFixed(2)}€
@@ -90,10 +100,7 @@
       </TableRow>
       <TableRow>
         <TableCell>
-          Impôts sur le revenu - Tranche 41% ({(
-            (grossRevenueTax.fourthTier * 100) /
-            grossRevenue
-          ).toFixed(2)}%)
+          Impôts sur le revenu - Tranche 41% ({fourthTierPercentage}%)
         </TableCell>
         <TableCell>
           {grossRevenueTax.fourthTier.toFixed(2)}€
@@ -101,10 +108,7 @@
       </TableRow>
       <TableRow>
         <TableCell>
-          Impôts sur le revenu - Tranche 45% ({(
-            (grossRevenueTax.fifthTier * 100) /
-            grossRevenue
-          ).toFixed(2)}%)
+          Impôts sur le revenu - Tranche 45% ({fifthTierPercentage}%)
         </TableCell>
         <TableCell>
           {grossRevenueTax.fifthTier.toFixed(2)}€
