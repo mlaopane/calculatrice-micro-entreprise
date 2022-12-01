@@ -58,13 +58,13 @@
       </TableRow>
       <TableRow>
         <TableCell>
-          Cotisations sociales ({withAcre ? '11%' : '22%'})
+          Cotisations sociales ({withAcre ? '11%' : '21.10%'})
         </TableCell>
         <TableCell>{socialContributions.toFixed(2)}€</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell>Cotisations formation (0.1%)</TableCell>
-        <TableCell>{trainingContributions.toFixed(2)}€</TableCell>
+        <TableCell>Cotisations formation (0.2%)</TableCell>
+        <TableCell>{trainingContributions.toFixed(3)}€</TableCell>
       </TableRow>
       <TableRow>
         <TableCell>

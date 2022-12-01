@@ -3,7 +3,7 @@ type Params = {
 };
 
 export const calculateSocialContributions = (revenue: number): number =>
-  revenue * 0.22;
+  revenue * 0.211;
 
 export const calculateSocialContributionsWithAcre = (revenue: number): number =>
   calculateSocialContributions(revenue) / 2;
