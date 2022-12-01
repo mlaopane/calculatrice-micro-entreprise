@@ -3,11 +3,6 @@ import {
   calculateFourthTierTax,
   calculateSecondTierTax,
   calculateThirdTierTax,
-  FIRST_TIER_CAP,
-  FOURTH_TIER_CAP,
-  SECOND_TIER_CAP,
-  SECOND_TIER_RATE,
-  THIRD_TIER_CAP,
 } from './calculateRevenueTax';
 import { calculateTaxableRevenue } from './calculateTaxableRevenue';
 
