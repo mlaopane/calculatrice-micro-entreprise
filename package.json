@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "build-and-deploy": "pnpm run build && pnpm run deploy",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "dev": "vite",
-    "deploy": "surge dist $(cat CNAME)",
     "preview": "vite preview",
     "test": "jest --verbose"
   },
