@@ -3,6 +3,8 @@
 </script>
 
 <main>
+  <h1>Calculatrice micro-entrepreneur</h1>
+  <p>Valable pour des bénéfices non commerciaux uniquement</p>
   <Calculator />
 </main>
 
