@@ -1,10 +1,12 @@
 <script lang="ts">
-  import Calculator from './app/revenu-micro-entrepreneur/Calculator.svelte';
+  import Calculator from './app/Calculator.svelte';
+  import MainTitle from './app/MainTitle.svelte';
+  import MainDescription from './app/MainDescription.svelte';
 </script>
 
 <main>
-  <h1>Calculatrice micro-entrepreneur</h1>
-  <p>Valable pour des bénéfices non commerciaux uniquement</p>
+  <MainTitle />
+  <MainDescription />
   <Calculator />
 </main>
 

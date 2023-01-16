@@ -1,7 +1,7 @@
 <script lang="ts">
-  import TableCell from '../../lib/TableCell.svelte';
-  import NumberInput from '../../lib/NumberInput.svelte';
-  import TableRow from '../../lib/TableRow.svelte';
+  import TableCell from '../lib/TableCell.svelte';
+  import NumberInput from '../lib/NumberInput.svelte';
+  import TableRow from '../lib/TableRow.svelte';
   import { calculateTrainingContributions } from './calculateTrainingContributions';
   import { makeGrossRevenueTax } from './makeGrossRevenueTax';
   import { makeSocialContributionsCalculator } from './socialContributionsCalculator';
