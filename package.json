@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "dev": "vite",
+    "start": "vite",
     "deploy-surge": "pnpm run build && surge dist $(cat CNAME)",
     "preview": "vite preview",
     "test": "jest --verbose"
