@@ -1,14 +1,24 @@
 <script lang="ts">
-  import Calculator from './app/Calculator.svelte';
-  import MainTitle from './app/MainTitle.svelte';
-  import MainDescription from './app/MainDescription.svelte';
+  import CalculatorMainTable from './app/CalculatorMainTable.svelte';
+  import CalculatorHeaderTitle from './app/CalculatorHeaderTitle.svelte';
+  import CalculatorMainDetails from './app/CalculatorMainDetails.svelte';
+  import Header from './lib/Header.svelte';
+  import Main from './lib/Main.svelte';
+  import Column from './lib/Column.svelte';
 </script>
 
-<main>
-  <MainTitle />
-  <MainDescription />
-  <Calculator />
-</main>
+<Header>
+  <Column>
+    <CalculatorHeaderTitle />
+  </Column>
+</Header>
+
+<Main>
+  <Column>
+    <CalculatorMainDetails />
+    <CalculatorMainTable />
+  </Column>
+</Main>
 
 <style>
   :root {
@@ -17,16 +27,22 @@
     box-sizing: border-box;
   }
 
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
+  :global(html) {
+    font-size: 62.5%;
+  }
+
+  :global(body) {
+    margin: 0px;
+  }
+
+  :global(body *) {
+    box-sizing: border-box;
   }
 
   :global(input) {
     border-radius: 2px;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 2rem;
     height: 40px;
     padding: 4px 16px;
   }
@@ -35,6 +51,6 @@
     margin: 0;
   }
   :global(input[type='number']) {
-    -moz-appearance: textfield;
+    appearance: textfield;
   }
 </style>
