@@ -8,6 +8,15 @@
   import { makeSocialContributionsCalculator } from './socialContributionsCalculator';
   let grossRevenue = null;
   let withAcre = false;
+
+  function formatAsPercentage(input: number): string {
+    return `${input.toFixed(3)}%`;
+  }
+
+  function formatAsEuros(input: number): string {
+    return `${input.toFixed(2)}€`;
+  }
+
   $: calculateSocialContributions = makeSocialContributionsCalculator({
     withAcre,
   });
@@ -24,20 +33,20 @@
       : (100 * revenueTax) / grossRevenue;
   $: secondTierPercentage =
     grossRevenue === 0 || grossRevenue === null
-      ? '0.000'
-      : ((grossRevenueTax.secondTier * 100) / grossRevenue).toFixed(3);
+      ? formatAsPercentage(0)
+      : formatAsPercentage((grossRevenueTax.secondTier * 100) / grossRevenue);
   $: thirdTierPercentage =
     grossRevenue === 0 || grossRevenue === null
-      ? '0.000'
-      : ((grossRevenueTax.thirdTier * 100) / grossRevenue).toFixed(3);
+      ? formatAsPercentage(0)
+      : formatAsPercentage((grossRevenueTax.thirdTier * 100) / grossRevenue);
   $: fourthTierPercentage =
     grossRevenue === 0 || grossRevenue === null
-      ? '0.000'
-      : ((grossRevenueTax.fourthTier * 100) / grossRevenue).toFixed(3);
+      ? formatAsPercentage(0)
+      : formatAsPercentage((grossRevenueTax.fourthTier * 100) / grossRevenue);
   $: fifthTierPercentage =
     grossRevenue === 0 || grossRevenue === null
-      ? '0.000'
-      : ((grossRevenueTax.fifthTier * 100) / grossRevenue).toFixed(3);
+      ? formatAsPercentage(0)
+      : formatAsPercentage((grossRevenueTax.fifthTier * 100) / grossRevenue);
 </script>
 
 <table id="calculator__main-table">
@@ -70,65 +79,65 @@
   <tbody>
     <TableRow>
       <TableCell>CA imposable (abattement 34%)</TableCell>
-      <TableNumberCell>{taxableRevenue.toFixed(3)}€</TableNumberCell>
+      <TableNumberCell>{formatAsEuros(taxableRevenue)}</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Cotisations sociales ({withAcre ? '11%' : '21.10%'})
       </TableCell>
-      <TableNumberCell>{socialContributions.toFixed(3)}€</TableNumberCell>
+      <TableNumberCell>{formatAsEuros(socialContributions)}</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Cotisations formation (0.2%)</TableCell>
-      <TableNumberCell>{trainingContributions.toFixed(3)}€</TableNumberCell>
+      <TableNumberCell>{formatAsEuros(trainingContributions)}</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 11% ({secondTierPercentage}%)
+        Impôts sur le revenu - Tranche 11% ({secondTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {grossRevenueTax.secondTier.toFixed(3)}€
+        {formatAsEuros(grossRevenueTax.secondTier)}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 30% ({thirdTierPercentage}%)
+        Impôts sur le revenu - Tranche 30% ({thirdTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {grossRevenueTax.thirdTier.toFixed(3)}€
+        {formatAsEuros(grossRevenueTax.thirdTier)}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 41% ({fourthTierPercentage}%)
+        Impôts sur le revenu - Tranche 41% ({fourthTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {grossRevenueTax.fourthTier.toFixed(3)}€
+        {formatAsEuros(grossRevenueTax.fourthTier)}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 45% ({fifthTierPercentage}%)
+        Impôts sur le revenu - Tranche 45% ({fifthTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {grossRevenueTax.fifthTier.toFixed(3)}€
+        {formatAsEuros(grossRevenueTax.fifthTier)}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu final ({revenueTaxPercentage.toFixed(3)}%)
+        Impôts sur le revenu final ({formatAsPercentage(revenueTaxPercentage)})
       </TableCell>
       <TableNumberCell>
-        {revenueTax.toFixed(3)}€
+        {formatAsEuros(revenueTax)}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Revenu annuel net</TableCell>
-      <TableNumberCell>{netRevenue.toFixed(3)}€</TableNumberCell>
+      <TableNumberCell>{formatAsEuros(netRevenue)}</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Revenu mensuel net</TableCell>
-      <TableNumberCell>{(netRevenue / 12).toFixed(3)}€</TableNumberCell>
+      <TableNumberCell>{(netRevenue / 12).toFixed(3)}</TableNumberCell>
     </TableRow>
   </tbody>
 </table>
