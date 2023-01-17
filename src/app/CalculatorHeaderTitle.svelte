@@ -6,7 +6,7 @@
 <style>
   h1 {
     font-size: 3.2rem;
-    line-height: 6rem;
+    line-height: 4rem;
     margin: 0px;
   }
   #header-title__subject {
