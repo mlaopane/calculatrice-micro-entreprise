@@ -1,12 +1,16 @@
 <script lang="ts">
   import Input from './Input.svelte';
 
-  export let name;
-  export let id;
+  export let name: string;
+  export let id: string;
   export let placeholder = '';
   export let value = 0;
 
-  function isLastCharacterNumber(value: string): boolean {
+  function isEmpty(value: string): boolean {
+    return value.length === 0;
+  }
+
+  function hasLastCharacterNumber(value: string): boolean {
     return !isNaN(+value.slice(-1));
   }
 
@@ -14,15 +18,21 @@
     return value.slice(0, value.length - 1);
   }
 
-  function keepNumbersOnly(eventValue: string): number {
-    if (isLastCharacterNumber(eventValue)) {
+  function keepNumbersOnly(eventValue: string): number | null {
+    if (isEmpty(eventValue)) {
+      return null;
+    }
+    if (hasLastCharacterNumber(eventValue)) {
       return +eventValue;
     }
-    return +extractPreviousValue(eventValue);
+    const previousValue = extractPreviousValue(eventValue);
+    if (isEmpty(previousValue)) {
+      return null;
+    }
+    return +previousValue;
   }
 
   function handleInputEvent(event: { currentTarget: HTMLInputElement }) {
-    console.log(typeof event.currentTarget.value);
     value = keepNumbersOnly(event.currentTarget.value);
   }
 </script>

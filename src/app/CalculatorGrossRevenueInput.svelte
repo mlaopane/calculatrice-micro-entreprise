@@ -7,6 +7,7 @@
 <NumberInput
   id="ca-brut"
   name="grossRevenue"
-  placeholder="Ex. 72600"
+  placeholder="Exemple: 72600"
   bind:value={grossRevenue}
+  {...$$restProps}
 />

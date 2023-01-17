@@ -2,7 +2,7 @@
   export let textAlign: 'center' | 'left' | 'right' = 'left';
 </script>
 
-<td style="text-align: {textAlign}">
+<td {...$$restProps} style="text-align: {textAlign}">
   <slot />
 </td>
 

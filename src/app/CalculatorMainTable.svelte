@@ -54,15 +54,23 @@
 <table id="calculator__main-table">
   <tbody>
     <TableRow>
-      <TableCell>CA brut</TableCell>
+      <TableCell id="gross-revenue-label"
+        >Chiffre d'affaires annuel brut (CA)</TableCell
+      >
       <TableCell>
-        <CalculatorGrossRevenueInput bind:grossRevenue />
+        <CalculatorGrossRevenueInput
+          aria-labelledby="gross-revenue-label"
+          bind:grossRevenue
+        />
       </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell>Avec ACRE ?</TableCell>
+      <TableCell id="eligible-to-acre-label">Avec ACRE ?</TableCell>
       <TableCell>
-        <CalculatorIsEligibleToAcreCheckbox bind:checked={withAcre} />
+        <CalculatorIsEligibleToAcreCheckbox
+          aria-labelledby="eligible-to-acre-label"
+          bind:checked={withAcre}
+        />
       </TableCell>
     </TableRow>
   </tbody>

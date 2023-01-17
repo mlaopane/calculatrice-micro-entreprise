@@ -2,4 +2,10 @@
   export let checked = false;
 </script>
 
-<input id="eligible-acre" name="withAcre" type="checkbox" bind:checked />
+<input
+  {...$$restProps}
+  id="eligible-acre"
+  name="withAcre"
+  type="checkbox"
+  bind:checked
+/>
