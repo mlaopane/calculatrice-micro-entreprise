@@ -4,6 +4,8 @@
   import TableNumberCell from '../lib/TableNumberCell.svelte';
   import TableRow from '../lib/TableRow.svelte';
   import { calculateTrainingContributions } from './calculateTrainingContributions';
+  import CalculatorGrossRevenueInput from './CalculatorGrossRevenueInput.svelte';
+  import CalculatorIsEligibleToAcreCheckbox from './CalculatorIsEligibleToAcreCheckbox.svelte';
   import { makeGrossRevenueTax } from './makeGrossRevenueTax';
   import { makeSocialContributionsCalculator } from './socialContributionsCalculator';
   let grossRevenue = null;
@@ -54,23 +56,13 @@
     <TableRow>
       <TableCell>CA brut</TableCell>
       <TableCell>
-        <NumberInput
-          id="ca-brut"
-          name="grossRevenue"
-          placeholder="Ex. 72600"
-          bind:value={grossRevenue}
-        />
+        <CalculatorGrossRevenueInput bind:grossRevenue />
       </TableCell>
     </TableRow>
     <TableRow>
       <TableCell>Avec ACRE ?</TableCell>
       <TableCell>
-        <input
-          id="eligible-acre"
-          name="withAcre"
-          type="checkbox"
-          bind:checked={withAcre}
-        />
+        <CalculatorIsEligibleToAcreCheckbox bind:checked={withAcre} />
       </TableCell>
     </TableRow>
   </tbody>
