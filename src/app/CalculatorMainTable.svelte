@@ -55,7 +55,7 @@
   <tbody>
     <TableRow>
       <TableCell id="gross-revenue-label"
-        >Chiffre d'affaires annuel brut (CA)</TableCell
+        >Chiffre d'affaires annuel brut</TableCell
       >
       <TableCell>
         <CalculatorGrossRevenueInput
@@ -78,7 +78,9 @@
 <table>
   <tbody>
     <TableRow>
-      <TableCell>CA imposable (abattement 34%)</TableCell>
+      <TableCell
+        >Chiffres d'affaires annuel imposable (abattement 34%)</TableCell
+      >
       <TableNumberCell>{formatAsEuros(taxableRevenue)}</TableNumberCell>
     </TableRow>
     <TableRow>

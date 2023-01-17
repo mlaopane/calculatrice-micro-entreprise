@@ -2,15 +2,18 @@
   <summary
     >Calculez les revenus de votre <strong>micro-entreprise</strong></summary
   >
-  <p>
-    Indiquez votre <strong>chiffre d'affaires</strong> annuel brut (CA brut) pour
-    visualiser vos revenus ainsi que vos impôts et cotisations
-  </p>
-  <p>
-    Vous pouvez (en option) indiquer si vous bénéficiez d'une <strong
-      >aide à la création ou à la reprise d'entreprise</strong
-    > (ACRE)
-  </p>
+  <div id="calculator__main-details__content">
+    <p>
+      Indiquez votre <strong>chiffre d'affaires</strong>
+      <span aria-hidden="true">(CA)</span> annuel brut pour visualiser vos revenus
+      ainsi que vos impôts et cotisations.
+    </p>
+    <p>
+      Vous pouvez (en option) indiquer si vous bénéficiez d'une
+      <strong>aide à la création ou à la reprise d'entreprise</strong>
+      <span aria-hidden="true">(ACRE)</span>.
+    </p>
+  </div>
 </details>
 
 <style>
