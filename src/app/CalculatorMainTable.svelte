@@ -27,8 +27,9 @@
   $: grossRevenueTax = makeGrossRevenueTax(grossRevenue);
   $: taxableRevenue = grossRevenueTax.taxableRevenue;
   $: revenueTax = grossRevenueTax.total;
-  $: netRevenue =
+  $: netAnnualRevenue =
     grossRevenue - socialContributions - trainingContributions - revenueTax;
+  $: netMonthlyRevenue = netAnnualRevenue / 12;
   $: revenueTaxPercentage =
     grossRevenue === 0 || grossRevenue === null
       ? 0
@@ -135,11 +136,11 @@
     </TableRow>
     <TableRow>
       <TableCell>Revenu annuel net</TableCell>
-      <TableNumberCell>{formatAsEuros(netRevenue)}</TableNumberCell>
+      <TableNumberCell>{formatAsEuros(netAnnualRevenue)}</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Revenu mensuel net</TableCell>
-      <TableNumberCell>{(netRevenue / 12).toFixed(3)}</TableNumberCell>
+      <TableNumberCell>{formatAsEuros(netMonthlyRevenue)}</TableNumberCell>
     </TableRow>
   </tbody>
 </table>
