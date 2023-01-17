@@ -25,6 +25,13 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-sizing: border-box;
+    --color_grey-medium: hsl(47, 5%, 60%);
+    --color_grey-light: hsl(47, 5%, 90%);
+    --color_grey-extra-light: hsl(47, 5%, 96%);
+    --color_papyrus-light: hsl(47, 87%, 90%);
+    --color_papyrus-extra-light: hsl(47, 87%, 96%);
+    --color_red-medium: hsla(350, 50%, 50%, 0.9);
+    --color_white: #fff;
   }
 
   :global(html) {
@@ -32,6 +39,7 @@
   }
 
   :global(body) {
+    background-color: var(--color_white);
     margin: 0px;
   }
 

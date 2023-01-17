@@ -134,6 +134,7 @@
 
 <style>
   table {
+    border-collapse: collapse;
     min-width: 64rem;
     width: 100%;
   }
