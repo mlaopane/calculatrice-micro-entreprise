@@ -1,6 +1,7 @@
 <script lang="ts">
-  import TableCell from '../lib/TableCell.svelte';
   import NumberInput from '../lib/NumberInput.svelte';
+  import TableCell from '../lib/TableCell.svelte';
+  import TableNumberCell from '../lib/TableNumberCell.svelte';
   import TableRow from '../lib/TableRow.svelte';
   import { calculateTrainingContributions } from './calculateTrainingContributions';
   import { makeGrossRevenueTax } from './makeGrossRevenueTax';
@@ -69,65 +70,65 @@
   <tbody>
     <TableRow>
       <TableCell>CA imposable (abattement 34%)</TableCell>
-      <TableCell>{taxableRevenue.toFixed(3)}€</TableCell>
+      <TableNumberCell>{taxableRevenue.toFixed(3)}€</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Cotisations sociales ({withAcre ? '11%' : '21.10%'})
       </TableCell>
-      <TableCell>{socialContributions.toFixed(3)}€</TableCell>
+      <TableNumberCell>{socialContributions.toFixed(3)}€</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Cotisations formation (0.2%)</TableCell>
-      <TableCell>{trainingContributions.toFixed(3)}€</TableCell>
+      <TableNumberCell>{trainingContributions.toFixed(3)}€</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Impôts sur le revenu - Tranche 11% ({secondTierPercentage}%)
       </TableCell>
-      <TableCell>
+      <TableNumberCell>
         {grossRevenueTax.secondTier.toFixed(3)}€
-      </TableCell>
+      </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Impôts sur le revenu - Tranche 30% ({thirdTierPercentage}%)
       </TableCell>
-      <TableCell>
+      <TableNumberCell>
         {grossRevenueTax.thirdTier.toFixed(3)}€
-      </TableCell>
+      </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Impôts sur le revenu - Tranche 41% ({fourthTierPercentage}%)
       </TableCell>
-      <TableCell>
+      <TableNumberCell>
         {grossRevenueTax.fourthTier.toFixed(3)}€
-      </TableCell>
+      </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Impôts sur le revenu - Tranche 45% ({fifthTierPercentage}%)
       </TableCell>
-      <TableCell>
+      <TableNumberCell>
         {grossRevenueTax.fifthTier.toFixed(3)}€
-      </TableCell>
+      </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
         Impôts sur le revenu final ({revenueTaxPercentage.toFixed(3)}%)
       </TableCell>
-      <TableCell>
+      <TableNumberCell>
         {revenueTax.toFixed(3)}€
-      </TableCell>
+      </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Revenu annuel net</TableCell>
-      <TableCell>{netRevenue.toFixed(3)}€</TableCell>
+      <TableNumberCell>{netRevenue.toFixed(3)}€</TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Revenu mensuel net</TableCell>
-      <TableCell>{(netRevenue / 12).toFixed(3)}€</TableCell>
+      <TableNumberCell>{(netRevenue / 12).toFixed(3)}€</TableNumberCell>
     </TableRow>
   </tbody>
 </table>
