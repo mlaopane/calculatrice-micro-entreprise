@@ -19,13 +19,14 @@
   }
 
   function keepNumbersOnly(eventValue: string): number | null {
-    if (isEmpty(eventValue)) {
+    const sanitizedEventValue = eventValue.trim();
+    if (isEmpty(sanitizedEventValue)) {
       return null;
     }
-    if (hasLastCharacterNumber(eventValue)) {
-      return +eventValue;
+    if (hasLastCharacterNumber(sanitizedEventValue)) {
+      return +sanitizedEventValue;
     }
-    const previousValue = extractPreviousValue(eventValue);
+    const previousValue = extractPreviousValue(sanitizedEventValue);
     if (isEmpty(previousValue)) {
       return null;
     }
