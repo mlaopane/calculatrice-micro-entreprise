@@ -5,9 +5,10 @@ import {
   calculateThirdTierTax,
 } from './calculateRevenueTax';
 import { calculateTaxableRevenue } from './calculateTaxableRevenue';
+import { computeCurrentYear } from './computeCurrentYear';
 
 class RevenueTax {
-  constructor(readonly grossRevenue) {}
+  constructor(readonly scaleYear: 2022 | 2023, readonly grossRevenue: number) {}
 
   get taxableRevenue() {
     return calculateTaxableRevenue(this.grossRevenue);
@@ -28,21 +29,40 @@ class RevenueTax {
   }
 
   get secondTier() {
-    return calculateSecondTierTax(this.taxableRevenue);
+    return +calculateSecondTierTax({
+      scaleYear: this.scaleYear,
+      taxableRevenue: this.taxableRevenue,
+    }).toFixed(3);
   }
 
   get thirdTier() {
-    return calculateThirdTierTax(this.taxableRevenue);
+    return +calculateThirdTierTax({
+      scaleYear: this.scaleYear,
+      taxableRevenue: this.taxableRevenue,
+    }).toFixed(3);
   }
 
   get fourthTier() {
-    return calculateFourthTierTax(this.taxableRevenue);
+    return +calculateFourthTierTax({
+      scaleYear: this.scaleYear,
+      taxableRevenue: this.taxableRevenue,
+    }).toFixed(3);
   }
 
   get fifthTier() {
-    return calculateFifthTierTax(this.taxableRevenue);
+    return +calculateFifthTierTax({
+      scaleYear: this.scaleYear,
+      taxableRevenue: this.taxableRevenue,
+    }).toFixed(3);
   }
 }
 
-export const makeGrossRevenueTax = (grossRevenue: number) =>
-  new RevenueTax(grossRevenue);
+const makeGrossRevenueTaxForScaleYear = ({ grossRevenue, scaleYear }) =>
+  new RevenueTax(scaleYear, grossRevenue);
+
+export const makeGrossRevenueTax = (grossRevenue: number) => {
+  return makeGrossRevenueTaxForScaleYear({
+    grossRevenue,
+    scaleYear: computeCurrentYear(),
+  });
+};

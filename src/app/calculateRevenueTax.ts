@@ -1,59 +1,140 @@
-export const FIRST_TIER_RATE = 0;
-export const SECOND_TIER_RATE = 0.11;
-export const THIRD_TIER_RATE = 0.3;
-export const FOURTH_TIER_RATE = 0.41;
-export const FIFTH_TIER_RATE = 0.45;
+import { computeCurrentYear } from './computeCurrentYear';
 
-export const FIRST_TIER_CAP = 10225;
-export const SECOND_TIER_CAP = 26070;
-export const THIRD_TIER_CAP = 74545;
-export const FOURTH_TIER_CAP = 160336;
-export const FIFTH_TIER_CAP = Infinity;
-
-export const calculateSecondTierTax = (taxableRevenue: number): number => {
-  if (taxableRevenue <= FIRST_TIER_CAP) {
-    return 0;
-  }
-
-  if (taxableRevenue < SECOND_TIER_CAP) {
-    return (taxableRevenue - FIRST_TIER_CAP) * SECOND_TIER_RATE;
-  }
-
-  return (SECOND_TIER_CAP - FIRST_TIER_CAP) * SECOND_TIER_RATE;
+export type ScaleYear = 2022 | 2023;
+export type TaxCalculationPayload = {
+  scaleYear: ScaleYear;
+  taxableRevenue: number;
 };
 
-export const calculateThirdTierTax = (taxableRevenue: number): number => {
-  if (taxableRevenue <= SECOND_TIER_CAP) {
-    return 0;
-  }
-
-  if (taxableRevenue < THIRD_TIER_CAP) {
-    return (taxableRevenue - SECOND_TIER_CAP) * THIRD_TIER_RATE;
-  }
-
-  return (THIRD_TIER_CAP - SECOND_TIER_CAP) * THIRD_TIER_RATE;
+export const taxScale: Record<ScaleYear, any> = {
+  2022: {
+    firstTier: {
+      rate: 0,
+      cap: 10_225,
+    },
+    secondTier: {
+      rate: 0.11,
+      cap: 26_070,
+    },
+    thirdTier: {
+      rate: 0.3,
+      cap: 74_545,
+    },
+    fourthTier: {
+      rate: 0.41,
+      cap: 160_336,
+    },
+    fifthTier: {
+      rate: 0.45,
+      cap: Infinity,
+    },
+  },
+  2023: {
+    firstTier: {
+      rate: 0,
+      cap: 10_777,
+    },
+    secondTier: {
+      rate: 0.11,
+      cap: 27_478,
+    },
+    thirdTier: {
+      rate: 0.3,
+      cap: 78_570,
+    },
+    fourthTier: {
+      rate: 0.41,
+      cap: 168_994,
+    },
+    fifthTier: {
+      rate: 0.45,
+      cap: Infinity,
+    },
+  },
 };
 
-export const calculateFourthTierTax = (taxableRevenue: number): number => {
-  if (taxableRevenue <= THIRD_TIER_CAP) {
+export const currentTaxScale = taxScale[computeCurrentYear()];
+
+export const calculateSecondTierTax = ({
+  scaleYear,
+  taxableRevenue,
+}: TaxCalculationPayload): number => {
+  const currentTaxScale = taxScale[scaleYear];
+
+  if (taxableRevenue <= currentTaxScale.firstTier.cap) {
     return 0;
   }
 
-  if (taxableRevenue < FOURTH_TIER_CAP) {
-    return (taxableRevenue - THIRD_TIER_CAP) * FOURTH_TIER_RATE;
+  if (taxableRevenue < currentTaxScale.secondTier.cap) {
+    return (
+      (taxableRevenue - currentTaxScale.firstTier.cap) *
+      currentTaxScale.secondTier.rate
+    );
   }
 
-  return (FOURTH_TIER_CAP - THIRD_TIER_CAP) * FOURTH_TIER_RATE;
+  return (
+    (currentTaxScale.secondTier.cap - currentTaxScale.firstTier.cap) *
+    currentTaxScale.secondTier.rate
+  );
 };
 
-export const calculateFifthTierTax = (taxableRevenue: number): number => {
-  if (taxableRevenue <= FOURTH_TIER_CAP) {
+export const calculateThirdTierTax = ({
+  scaleYear,
+  taxableRevenue,
+}: TaxCalculationPayload): number => {
+  const currentTaxScale = taxScale[scaleYear];
+
+  if (taxableRevenue <= currentTaxScale.secondTier.cap) {
     return 0;
   }
 
-  if (taxableRevenue < FIFTH_TIER_CAP) {
-    return (taxableRevenue - FOURTH_TIER_CAP) * FIFTH_TIER_RATE;
+  if (taxableRevenue < currentTaxScale.thirdTier.cap) {
+    return (
+      (taxableRevenue - currentTaxScale.secondTier.cap) *
+      currentTaxScale.thirdTier.rate
+    );
   }
 
-  return (FIFTH_TIER_CAP - FOURTH_TIER_CAP) * FIFTH_TIER_RATE;
+  return (
+    (currentTaxScale.thirdTier.cap - currentTaxScale.secondTier.cap) *
+    currentTaxScale.thirdTier.rate
+  );
+};
+
+export const calculateFourthTierTax = ({
+  scaleYear,
+  taxableRevenue,
+}: TaxCalculationPayload): number => {
+  const currentTaxScale = taxScale[scaleYear];
+
+  if (taxableRevenue <= currentTaxScale.thirdTier.cap) {
+    return 0;
+  }
+
+  if (taxableRevenue < currentTaxScale.fourthTier.cap) {
+    return (
+      (taxableRevenue - currentTaxScale.thirdTier.cap) *
+      currentTaxScale.fourthTier.rate
+    );
+  }
+
+  return (
+    (currentTaxScale.fourthTier.cap - currentTaxScale.thirdTier.cap) *
+    currentTaxScale.fourthTier.rate
+  );
+};
+
+export const calculateFifthTierTax = ({
+  scaleYear,
+  taxableRevenue,
+}: TaxCalculationPayload): number => {
+  const currentTaxScale = taxScale[scaleYear];
+  if (taxableRevenue <= currentTaxScale.fourthTier.cap) {
+    return 0;
+  }
+
+  return (
+    (taxableRevenue - currentTaxScale.fourthTier.cap) *
+    currentTaxScale.fifthTier.rate
+  );
 };
