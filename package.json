@@ -27,6 +27,6 @@
     "vite": "^3"
   },
   "dependencies": {
-    "@mlaopane/web-components": "^0.1.2"
+    "@mlaopane/web-components": "^0.3.1"
   }
 }

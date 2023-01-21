@@ -1,7 +1,7 @@
 <script lang="ts">
   import NumberInput from '../lib/NumberInput.svelte';
 
-  export let grossRevenue: number;
+  export let grossRevenue: number | null;
 </script>
 
 <NumberInput

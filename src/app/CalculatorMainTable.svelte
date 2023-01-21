@@ -1,5 +1,4 @@
 <script lang="ts">
-  import NumberInput from '../lib/NumberInput.svelte';
   import TableCell from '../lib/TableCell.svelte';
   import TableNumberCell from '../lib/TableNumberCell.svelte';
   import TableRow from '../lib/TableRow.svelte';
