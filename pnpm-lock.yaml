@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@mlaopane/web-components': ^0.5.0
+  '@mlaopane/web-components': ^0.8.0
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.30
   '@tsconfig/svelte': ^2.0.1
   '@types/jest': ^27.4.1
@@ -17,7 +17,7 @@ specifiers:
   vite: ^3
 
 dependencies:
-  '@mlaopane/web-components': 0.5.0
+  '@mlaopane/web-components': 0.8.0
 
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 1.1.1_svelte@3.53.1+vite@3.2.3
@@ -652,8 +652,8 @@ packages:
       '@lit-labs/ssr-dom-shim': 1.0.0
     dev: false
 
-  /@mlaopane/web-components/0.5.0:
-    resolution: {integrity: sha512-kP6UxnlT0eaKVTwwoTFwkS1JiyHRf1EXTAL4j0JsW4nNs1lf0KMbloWhamBso6/DxDleAzuadDo0U+MyyvThAA==}
+  /@mlaopane/web-components/0.8.0:
+    resolution: {integrity: sha512-uFbkTIl7XxI1MWlc4cSOELPkBSMNtDXOJuNIFBjguzDRdV+xQVf2IiyqptYvCAzU2DrlR6/l1fq5cU/o+XP/Nw==}
     dependencies:
       lit: 2.6.1
     dev: false
