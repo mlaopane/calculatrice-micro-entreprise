@@ -1,9 +1,10 @@
 <script lang="ts">
   import '@mlaopane/web-components';
 
-  import CalculatorMainTable from './app/CalculatorMainTable.svelte';
   import CalculatorHeaderTitle from './app/CalculatorHeaderTitle.svelte';
   import CalculatorMainDetails from './app/CalculatorMainDetails.svelte';
+  import CalculatorMainForm from './app/CalculatorMainForm.svelte';
+  import CalculatorMainTable from './app/CalculatorMainTable.svelte';
   import Header from './lib/Header.svelte';
   import Main from './lib/Main.svelte';
   import Column from './lib/Column.svelte';
@@ -18,6 +19,7 @@
 <Main>
   <Column>
     <CalculatorMainDetails />
+    <CalculatorMainForm />
     <CalculatorMainTable />
   </Column>
 </Main>

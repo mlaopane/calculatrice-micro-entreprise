@@ -2,144 +2,86 @@
   import TableCell from '../lib/TableCell.svelte';
   import TableNumberCell from '../lib/TableNumberCell.svelte';
   import TableRow from '../lib/TableRow.svelte';
-  import { calculateTrainingContributions } from './calculateTrainingContributions';
-  import CalculatorGrossRevenueInput from './CalculatorGrossRevenueInput.svelte';
-  import CalculatorIsEligibleToAcreCheckbox from './CalculatorIsEligibleToAcreCheckbox.svelte';
-  import { makeGrossRevenueTax } from './makeGrossRevenueTax';
-  import { makeSocialContributionsCalculator } from './socialContributionsCalculator';
-  let grossRevenue = null;
-  let withAcre = false;
-
-  function formatAsPercentage(input: number): string {
-    return `${input.toFixed(3)}%`;
-  }
-
-  function formatAsEuros(input: number): string {
-    return `${input.toFixed(2)}€`;
-  }
-
-  $: calculateSocialContributions = makeSocialContributionsCalculator({
-    withAcre,
-  });
-  $: socialContributions = calculateSocialContributions(grossRevenue);
-  $: trainingContributions = calculateTrainingContributions(grossRevenue);
-  $: grossRevenueTax = makeGrossRevenueTax(grossRevenue);
-  $: taxableRevenue = grossRevenueTax.taxableRevenue;
-  $: revenueTax = grossRevenueTax.total;
-  $: netAnnualRevenue =
-    grossRevenue - socialContributions - trainingContributions - revenueTax;
-  $: netMonthlyRevenue = netAnnualRevenue / 12;
-  $: revenueTaxPercentage =
-    grossRevenue === 0 || grossRevenue === null
-      ? 0
-      : (100 * revenueTax) / grossRevenue;
-  $: secondTierPercentage =
-    grossRevenue === 0 || grossRevenue === null
-      ? formatAsPercentage(0)
-      : formatAsPercentage((grossRevenueTax.secondTier * 100) / grossRevenue);
-  $: thirdTierPercentage =
-    grossRevenue === 0 || grossRevenue === null
-      ? formatAsPercentage(0)
-      : formatAsPercentage((grossRevenueTax.thirdTier * 100) / grossRevenue);
-  $: fourthTierPercentage =
-    grossRevenue === 0 || grossRevenue === null
-      ? formatAsPercentage(0)
-      : formatAsPercentage((grossRevenueTax.fourthTier * 100) / grossRevenue);
-  $: fifthTierPercentage =
-    grossRevenue === 0 || grossRevenue === null
-      ? formatAsPercentage(0)
-      : formatAsPercentage((grossRevenueTax.fifthTier * 100) / grossRevenue);
+  import { calculatorViewModel } from './calculatorViewModel';
 </script>
 
-<table id="calculator__main-table">
+<table id="calculator_main_table">
   <tbody>
     <TableRow>
-      <TableCell id="gross-revenue-label"
-        >Chiffre d'affaires annuel brut</TableCell
-      >
       <TableCell>
-        <CalculatorGrossRevenueInput
-          aria-labelledby="gross-revenue-label"
-          bind:grossRevenue
-        />
+        Chiffres d'affaires annuel imposable (abattement 34%)
       </TableCell>
+      <TableNumberCell>
+        {$calculatorViewModel.taxableRevenueAsEuros}
+      </TableNumberCell>
     </TableRow>
     <TableRow>
-      <TableCell id="eligible-to-acre-label">Avec ACRE ?</TableCell>
       <TableCell>
-        <CalculatorIsEligibleToAcreCheckbox
-          aria-labelledby="eligible-to-acre-label"
-          bind:checked={withAcre}
-        />
+        Cotisations sociales ({$calculatorViewModel.socialContributionsPercentage})
       </TableCell>
+      <TableNumberCell>
+        {$calculatorViewModel.socialContributionsEuros}
+      </TableNumberCell>
     </TableRow>
-  </tbody>
-</table>
-<table>
-  <tbody>
     <TableRow>
       <TableCell
-        >Chiffres d'affaires annuel imposable (abattement 34%)</TableCell
+        >Cotisations formation ({$calculatorViewModel.trainingContributionsPercentage})</TableCell
       >
-      <TableNumberCell>{formatAsEuros(taxableRevenue)}</TableNumberCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>
-        Cotisations sociales ({withAcre ? '11%' : '21.10%'})
-      </TableCell>
-      <TableNumberCell>{formatAsEuros(socialContributions)}</TableNumberCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Cotisations formation (0.2%)</TableCell>
-      <TableNumberCell>{formatAsEuros(trainingContributions)}</TableNumberCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>
-        Impôts sur le revenu - Tranche 11% ({secondTierPercentage})
-      </TableCell>
       <TableNumberCell>
-        {formatAsEuros(grossRevenueTax.secondTier)}
+        {$calculatorViewModel.trainingContributionsEuros}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 30% ({thirdTierPercentage})
+        Impôts sur le revenu - Tranche 11% ({$calculatorViewModel.secondTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {formatAsEuros(grossRevenueTax.thirdTier)}
+        {$calculatorViewModel.secondTierEuros}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 41% ({fourthTierPercentage})
+        Impôts sur le revenu - Tranche 30% ({$calculatorViewModel.thirdTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {formatAsEuros(grossRevenueTax.fourthTier)}
+        {$calculatorViewModel.thirdTierEuros}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu - Tranche 45% ({fifthTierPercentage})
+        Impôts sur le revenu - Tranche 41% ({$calculatorViewModel.fourthTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {formatAsEuros(grossRevenueTax.fifthTier)}
+        {$calculatorViewModel.fourthTierEuros}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>
-        Impôts sur le revenu final ({formatAsPercentage(revenueTaxPercentage)})
+        Impôts sur le revenu - Tranche 45% ({$calculatorViewModel.fifthTierPercentage})
       </TableCell>
       <TableNumberCell>
-        {formatAsEuros(revenueTax)}
+        {$calculatorViewModel.fifthTierEuros}
+      </TableNumberCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        Impôts sur le revenu final ({$calculatorViewModel.revenueTaxPercentage})
+      </TableCell>
+      <TableNumberCell>
+        {$calculatorViewModel.revenueTaxEuros}
       </TableNumberCell>
     </TableRow>
     <TableRow>
       <TableCell>Revenu annuel net</TableCell>
-      <TableNumberCell>{formatAsEuros(netAnnualRevenue)}</TableNumberCell>
+      <TableNumberCell
+        >{$calculatorViewModel.netAnnualRevenueEuros}</TableNumberCell
+      >
     </TableRow>
     <TableRow>
       <TableCell>Revenu mensuel net</TableCell>
-      <TableNumberCell>{formatAsEuros(netMonthlyRevenue)}</TableNumberCell>
+      <TableNumberCell
+        >{$calculatorViewModel.netMonthlyRevenueEuros}</TableNumberCell
+      >
     </TableRow>
   </tbody>
 </table>
@@ -147,6 +89,7 @@
 <style>
   table {
     border-collapse: collapse;
+    margin-top: 4rem;
     min-width: 64rem;
     width: 100%;
   }
