@@ -6,8 +6,8 @@
     isEligibleToAcre,
   } from './calculatorViewModel';
 
-  function handleInput(event: { target: { checked: boolean } }) {
-    isEligibleToAcre.set(event.target.checked);
+  function handleInput(event: { currentTarget: { checked: boolean } }) {
+    isEligibleToAcre.set(event.currentTarget.checked);
   }
 
   isEligibleToAcre.subscribe((newIsEligibleToAcre) => {
