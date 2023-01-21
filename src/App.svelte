@@ -29,6 +29,8 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-sizing: border-box;
+    --color_blue-medium: hsl(205, 80%, 60%);
+    --color_blue-dark: hsl(205, 80%, 30%);
     --color_grey-medium: hsl(47, 5%, 60%);
     --color_grey-light: hsl(47, 5%, 90%);
     --color_grey-extra-light: hsl(47, 5%, 96%);

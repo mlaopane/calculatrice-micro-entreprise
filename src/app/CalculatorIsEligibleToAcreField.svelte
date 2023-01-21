@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Switch from '../lib/Switch.svelte';
   import Field from '../lib/Field.svelte';
   import {
     calculatorViewModel,
@@ -6,8 +7,8 @@
     isEligibleToAcre,
   } from './calculatorViewModel';
 
-  function handleInput(event: { currentTarget: { checked: boolean } }) {
-    isEligibleToAcre.set(event.currentTarget.checked);
+  function handleToggle({ toggled }: { toggled: boolean }) {
+    isEligibleToAcre.set(toggled);
   }
 
   isEligibleToAcre.subscribe((newIsEligibleToAcre) => {
@@ -21,21 +22,18 @@
 </script>
 
 <Field>
-  <label for="isEligibleToAcre-checkbox" id="isEligibleToAcre-label">
-    Avec ACRE ?
-  </label>
-  <input
-    {...$$restProps}
-    id="isEligibleToAcre-checkbox"
+  <Switch
+    label={`Je bénéficie de l'ACRE`}
+    labelId="isEligibleToAcre-label"
+    inputId="isEligibleToAcre-input"
     name="isEligibleToAcre"
-    type="checkbox"
-    on:input={handleInput}
+    onToggle={handleToggle}
   />
 </Field>
 
 <style>
-  label {
+  /* label {
     font-size: 1.6rem;
     margin-right: 0.8rem;
-  }
+  } */
 </style>
