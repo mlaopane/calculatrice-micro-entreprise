@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
-import { calculateTrainingContributions } from './calculateTrainingContributions';
-import { makeGrossRevenueTax } from './makeGrossRevenueTax';
-import { makeSocialContributionsCalculator } from './socialContributionsCalculator';
+import { calculateTrainingContributions } from '../core/calculateTrainingContributions';
+import { makeGrossRevenueTaxForScaleYear } from '../core/grossRevenueTax';
+import { makeSocialContributionsCalculator } from '../core/socialContributionsCalculator';
 
 function formatAsPercentage(value: number): string {
   return `${value.toFixed(3)}%`;
@@ -33,7 +33,10 @@ export const computeCalculatorViewModel: ComputeCalculatorViewModel = ({
   const trainingContributionsEuros = formatAsEuros(trainingContributions);
   const trainingContributionsPercentage = `0.2%`;
 
-  const grossRevenueTax = makeGrossRevenueTax(grossRevenue);
+  const grossRevenueTax = makeGrossRevenueTaxForScaleYear({
+    grossRevenue,
+    scaleYear: 2023,
+  });
   const taxableRevenue = grossRevenueTax.taxableRevenue;
   const taxableRevenueAsEuros = formatAsEuros(taxableRevenue);
   const revenueTax = grossRevenueTax.total;

@@ -5,7 +5,6 @@ import {
   calculateThirdTierTax,
 } from './calculateRevenueTax';
 import { calculateTaxableRevenue } from './calculateTaxableRevenue';
-import { computeCurrentYear } from './computeCurrentYear';
 
 class RevenueTax {
   constructor(readonly scaleYear: 2022 | 2023, readonly grossRevenue: number) {}
@@ -57,12 +56,5 @@ class RevenueTax {
   }
 }
 
-const makeGrossRevenueTaxForScaleYear = ({ grossRevenue, scaleYear }) =>
+export const makeGrossRevenueTaxForScaleYear = ({ grossRevenue, scaleYear }) =>
   new RevenueTax(scaleYear, grossRevenue);
-
-export const makeGrossRevenueTax = (grossRevenue: number) => {
-  return makeGrossRevenueTaxForScaleYear({
-    grossRevenue,
-    scaleYear: computeCurrentYear(),
-  });
-};

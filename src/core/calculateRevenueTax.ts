@@ -1,5 +1,3 @@
-import { computeCurrentYear } from './computeCurrentYear';
-
 export type ScaleYear = 2022 | 2023;
 export type TaxCalculationPayload = {
   scaleYear: ScaleYear;
@@ -53,7 +51,7 @@ export const taxScale: Record<ScaleYear, any> = {
   },
 };
 
-export const currentTaxScale = taxScale[computeCurrentYear()];
+export const currentTaxScale = taxScale[2023];
 
 export const calculateSecondTierTax = ({
   scaleYear,
