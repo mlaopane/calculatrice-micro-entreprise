@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Input from './Input.svelte';
+  import TextInput from './TextInput.svelte';
 
   export let name: string;
   export let id: string;
@@ -38,7 +38,7 @@
   }
 </script>
 
-<Input
+<TextInput
   {...$$restProps}
   {name}
   {id}

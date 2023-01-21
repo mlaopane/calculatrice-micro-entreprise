@@ -1,4 +1,6 @@
 <script lang="ts">
+  import '@mlaopane/web-components';
+
   import CalculatorMainTable from './app/CalculatorMainTable.svelte';
   import CalculatorHeaderTitle from './app/CalculatorHeaderTitle.svelte';
   import CalculatorMainDetails from './app/CalculatorMainDetails.svelte';
