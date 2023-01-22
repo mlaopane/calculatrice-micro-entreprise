@@ -1,11 +1,12 @@
 <script lang="ts">
+  import Table from '../lib/Table.svelte';
   import TableCell from '../lib/TableCell.svelte';
   import TableNumberCell from '../lib/TableNumberCell.svelte';
   import TableRow from '../lib/TableRow.svelte';
   import { calculatorViewModel } from './calculatorViewModel';
 </script>
 
-<table id="calculator_main_table">
+<Table id="calculator_main_table" style="margin-top: 3.2rem;">
   <tbody>
     <TableRow>
       <TableCell>
@@ -84,13 +85,11 @@
       >
     </TableRow>
   </tbody>
-</table>
+</Table>
 
 <style>
-  table {
-    border-collapse: collapse;
-    margin-top: 4rem;
-    min-width: 64rem;
+  tbody {
+    display: table;
     width: 100%;
   }
 </style>
