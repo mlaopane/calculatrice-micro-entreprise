@@ -3,7 +3,7 @@
   export let labelId: string = '';
   export let label: string;
   export let name: string;
-  export let onToggle: (payload: { toggled }) => void;
+  export let onToggled: (payload: { toggled }) => void;
 </script>
 
-<mlp-switch {inputId} {label} {labelId} {name} on:toggle={onToggle} />
+<mlp-switch {inputId} {label} {labelId} {name} on:toggled={onToggled} />

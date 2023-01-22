@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ToggleEvent } from '@mlaopane/web-components';
+  import type { ToggledEvent } from '@mlaopane/web-components';
 
   import Switch from '../lib/Switch.svelte';
   import Field from '../lib/Field.svelte';
@@ -9,7 +9,7 @@
     isEligibleToAcre,
   } from './calculatorViewModel';
 
-  function handleToggle(event: ToggleEvent) {
+  function handleToggled(event: ToggledEvent) {
     isEligibleToAcre.set(event.detail.toggled);
   }
 
@@ -29,7 +29,7 @@
     labelId="isEligibleToAcre-label"
     inputId="isEligibleToAcre-input"
     name="isEligibleToAcre"
-    onToggle={handleToggle}
+    onToggled={handleToggled}
   />
 </Field>
 
