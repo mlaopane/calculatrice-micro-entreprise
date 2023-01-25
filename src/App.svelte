@@ -34,6 +34,8 @@
     --color_grey-medium: hsl(47, 5%, 60%);
     --color_grey-light: hsl(47, 5%, 90%);
     --color_grey-extra-light: hsl(47, 5%, 96%);
+    --color_papyrus-border: hsla(47, 15%, 75%);
+    --color_papyrus-shadow: hsla(47, 100%, 20%, 60%);
     --color_papyrus-light: hsl(47, 87%, 90%);
     --color_papyrus-extra-light: hsl(47, 87%, 96%);
     --color_red-medium: hsla(350, 50%, 50%, 0.9);
