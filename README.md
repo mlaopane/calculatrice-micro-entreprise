@@ -10,3 +10,9 @@ Calculatricks est une calculatrice multi-usages :
 pnpm install
 pnpm run start
 ```
+
+## Deploy
+
+```bash
+pnpm run deploy
+```
