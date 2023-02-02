@@ -31,7 +31,7 @@ export const computeCalculatorViewModel: ComputeCalculatorViewModel = ({
 
   const trainingContributions = calculateTrainingContributions(grossRevenue);
   const trainingContributionsEuros = formatAsEuros(trainingContributions);
-  const trainingContributionsPercentage = `0.2%`;
+  const trainingContributionsPercentage = `0.20%`;
 
   const grossRevenueTax = makeGrossRevenueTaxForScaleYear({
     grossRevenue,
