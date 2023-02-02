@@ -1,6 +1,6 @@
-import { taxScale } from './calculateRevenueTax';
 import { TAXABLE_RATE } from './calculateTaxableRevenue';
 import { makeGrossRevenueTaxForScaleYear } from './grossRevenueTax';
+import { taxScale } from './taxScale';
 
 [2022, 2023].forEach((scaleYear) => {
   describe(`A gross revenue tax in ${scaleYear}`, () => {
